@@ -1,0 +1,24 @@
+{
+  "name": "test-tag-publish",
+  "version": "0.0.0",
+  "description": "NPM publish automation",
+  "main": "src/test-tag-publish.js",
+  "scripts": {
+    "test": "jasmine ./spec/*-spec.js",
+    "release": "node bin/test-tag-publish.js"
+  },
+  "repository": "https://github.com/UziTech/test-tag-publish",
+  "author": "Tony Brix <Tony@Brix.ninja>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UziTech/test-tag-publish/issues"
+  },
+  "homepage": "https://github.com/UziTech/test-tag-publish#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.3"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "minimist": "^1.2.0"
+  }
+}
