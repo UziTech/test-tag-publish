@@ -1,6 +1,6 @@
 {
   "name": "test-tag-publish",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "NPM publish automation",
   "main": "src/test-tag-publish.js",
   "scripts": {
