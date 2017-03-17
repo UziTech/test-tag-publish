@@ -33,7 +33,11 @@ function config() {
 }
 
 function format(message) {
-	return "\"" + message.replace(/%s/g, newVersion) + "\"";
+	return escape(message.replace(/%s/g, newVersion));
+}
+
+function escape(arg) {
+	return "\"" + arg.replace(/"/g, "\\\"") + "\"";
 }
 
 function run(cmd, args, callback) {
@@ -105,7 +109,7 @@ const steps = [
 
 	function () {
 		output("Adding...");
-		run("git", ["add", packageJson], function (code) {
+		run("git", ["add", escape(packageJson)], function (code) {
 			if (code !== 0) return error("Adding failed.");
 			success("Adding completed.");
 		});
