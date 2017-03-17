@@ -45,6 +45,18 @@ function run(cmd, args, callback) {
 	proc.on("close", callback);
 }
 
+function start() {
+	if (force) {
+		return npmTest();
+	}
+	output("Checking for uncommitted changes...");
+	run("git", ["diff", "--quiet"], function (code) {
+		if (code !== 0) return error("There are uncommitted changes in the working tree. To skip this check use -f.");
+		success("Checking completed.");
+		npmTest();
+	});
+}
+
 function npmTest() {
 	output("Testing...");
 	run("npm", ["test"], function (code) {
@@ -106,6 +118,7 @@ const version = process.argv[2];
 // %s is npm version variable: https://docs.npmjs.com/cli/version
 const message = argv.m || argv.message || "v%s";
 const tagMessage = argv.t || argv.tag || message;
+const force = argv.f || argv.force;
 
 if (!oldVersion) {
 	error("No version in package.json found.");
@@ -114,4 +127,4 @@ if (!version) {
 	error("No version supplied.");
 }
 
-npmTest();
+start();
