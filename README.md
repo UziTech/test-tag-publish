@@ -26,9 +26,18 @@ test-tag-publish <version> [options]
 
 # Parameters
 
-*   `<version>` This is required and can be anything that `npm version` accepts. \[`<newversion>` | `major` | `minor` | `patch` | `premajor` | `preminor` | `prepatch` | `prerelease` | `from-git`\]
+*   `<version>` This is required and can be anything that [`npm version`](https://docs.npmjs.com/cli/version) accepts.
+    *   \[`<newversion>` | `major` | `minor` | `patch` | `premajor` | `preminor` | `prepatch` | `prerelease` | `from-git`]
 *   `[options]`
-    *   `-m|--message` The commit message. `%s` can be used to insert the new version number. \[Default = `v%s`\]
-    *   `-t|--tag` The tag message. `%s` can be used to insert the new version number. \[Default = The message\]
-    *   `-f|--force` Skip the check for uncommitted changes.
-    *   `-n|--no-test` Skip tests.
+    *   \[`-m` | `--message`]
+        *   The commit message.
+        *   `%s` can be used to insert the new version number.
+        *   Default value is `v%s`.
+    *   \[`-t` | `--tag`]
+        *   The tag message.
+        *   `%s` can be used to insert the new version number.
+        *   If this is not set the message is used.
+    *   \[`-f` | `--force`]
+        *   Skip the check for uncommitted changes.
+    *   \[`-n` | `--no-test`]
+        *   Skip tests.
