@@ -2,7 +2,8 @@
   "name": "test-tag-publish",
   "version": "0.0.6",
   "description": "NPM publish automation",
-  "main": "src/test-tag-publish.js",
+  "bin": "./bin/test-tag-publish.js",
+  "main": "index.js",
   "scripts": {
     "test": "jasmine ./spec/*-spec.js",
     "release": "node bin/test-tag-publish.js"
