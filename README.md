@@ -3,7 +3,7 @@
 This package will do the following:
 
 1.  Check for uncommitted changes.
-2.  Test the package.
+2.  Run tests.
 3.  Update the version number.
 4.  Commit the version number.
 5.  Tag the commit.
@@ -26,7 +26,8 @@ test-tag-publish <version> [options]
 
 # Parameters
 
-*   `<version>` This is required and can be anything that [`npm version`](https://docs.npmjs.com/cli/version) accepts.
+*   `<version>`
+    *   This is required and can be anything that [`npm version`](https://docs.npmjs.com/cli/version) accepts.
     *   \[`<newversion>` | `major` | `minor` | `patch` | `premajor` | `preminor` | `prepatch` | `prerelease` | `from-git`]
 *   `[options]`
     *   \[`-m` | `--message`]
