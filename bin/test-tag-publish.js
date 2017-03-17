@@ -88,8 +88,8 @@ const steps = [
 		if (noTest) return next();
 
 		output("Testing...");
-		const pkg = config();
-		if (!pkg.scripts || !pkg.scripts.test) {
+		const cfg = config();
+		if (!cfg.scripts || !cfg.scripts.test) {
 			error("No tests found. To skip this check use -n.");
 		}
 		run("npm", ["test"], function (code) {
@@ -104,6 +104,14 @@ const steps = [
 			if (code !== 0) return error("Updating version failed.");
 			newVersion = config().version;
 			success("Version updated from", oldVersion, "to", newVersion);
+		});
+	},
+
+	function () {
+		output("Resetting...");
+		run("git", ["reset"], function (code) {
+			if (code !== 0) return error("Resetting failed.");
+			success("Resetting completed.");
 		});
 	},
 
