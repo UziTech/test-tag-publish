@@ -5,7 +5,7 @@
   "bin": "./bin/test-tag-publish.js",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine ./spec/*-spec.js",
+    "test": "exit 0",
     "release": "node bin/test-tag-publish.js"
   },
   "repository": "https://github.com/UziTech/test-tag-publish",
@@ -15,9 +15,6 @@
     "url": "https://github.com/UziTech/test-tag-publish/issues"
   },
   "homepage": "https://github.com/UziTech/test-tag-publish#readme",
-  "devDependencies": {
-    "jasmine": "^2.5.3"
-  },
   "dependencies": {
     "colors": "^1.1.2",
     "minimist": "^1.2.0"
