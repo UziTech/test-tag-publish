@@ -77,10 +77,10 @@ function npmVersion() {
 }
 
 function gitCommit() {
-	output("Commiting...");
+	output("Committing...");
 	run("git", ["commit", "--all", "-m", getMessage(message)], function (code) {
-		if (code !== 0) return error("Commiting failed.");
-		success("Commiting completed.");
+		if (code !== 0) return error("Committing failed.");
+		success("Committing completed.");
 		gitTag();
 	});
 }
