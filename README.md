@@ -1,2 +1,34 @@
-# test-tag-publish
-NPM publish automation
+# Overview
+
+This package will do the following:
+
+1.  Check for uncommitted changes.
+2.  Test the package.
+3.  Update the version number.
+4.  Commit the version number.
+5.  Tag the commit.
+6.  Push all commits and tags.
+7.  Publish to npm.
+
+# Usage
+
+Install:
+
+```sh
+npm i -g test-tag-publish
+```
+
+Run:
+
+```sh
+test-tag-publish <version> [options]
+```
+
+# Parameters
+
+*   `<version>` This is required and can be anything that `npm version` accepts. \[`<newversion>` | `major` | `minor` | `patch` | `premajor` | `preminor` | `prepatch` | `prerelease` | `from-git`\]
+*   `[options]`
+    *   `-m|--message` The commit message. `%s` can be used to insert the new version number. \[Default = `v%s`\]
+    *   `-t|--tag` The tag message. `%s` can be used to insert the new version number. \[Default = The message\]
+    *   `-f|--force` Skip the check for uncommitted changes.
+    *   `-n|--no-test` Skip tests.
