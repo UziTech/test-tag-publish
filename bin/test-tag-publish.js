@@ -87,7 +87,6 @@ function gitPush() {
 	run("git", ["push", "--follow-tags"], function (code) {
 		if (code !== 0) return error("Pushing failed.");
 		success("Pushing completed.");
-		done(); // TODO:
 		npmPublish();
 	});
 }
