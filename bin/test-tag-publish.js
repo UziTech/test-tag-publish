@@ -55,6 +55,34 @@ function next() {
 	steps[step++]();
 }
 
+function showHelp() {
+	console.log(Colors.yellow("test-tag-publish <version> [options]"));
+	console.log(Colors.yellow(`
+<version>
+    This is required and can be anything that \`npm version\` accepts.
+    [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]
+[options]
+    [-m | --message]
+        The commit message.
+        %s can be used to insert the new version number.
+        Default value is v%s.
+    [-t | --tag]
+        The tag message.
+        %s can be used to insert the new version number.
+        If this is not set the message is used.
+    [-f | --force]
+        Skip the check for uncommitted changes.
+    [-n | --no-test]
+        Skip tests.
+
+For more info visit https://github.com/UziTech/test-tag-publish`));
+}
+
+if (process.argv[2] === "--help" || argv.help) {
+	showHelp();
+	process.exit();
+}
+
 const packageJson = path.resolve(process.cwd(), "./package.json");
 const version = process.argv[2];
 const oldVersion = config().version;
