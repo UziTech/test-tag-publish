@@ -2,6 +2,7 @@
 
 const spawn = require("child_process").spawn;
 const path = require("path");
+const fs = require("fs");
 const argv = require("minimist")(process.argv.slice(3));
 const Colors = require("colors/safe");
 
@@ -84,6 +85,7 @@ if (process.argv[2] === "--help" || argv.help) {
 }
 
 const packageJson = path.resolve(process.cwd(), "./package.json");
+const packageLockJson = path.resolve(process.cwd(), "./package-lock.json");
 const version = process.argv[2];
 const oldVersion = config().version;
 let newVersion;
@@ -145,7 +147,11 @@ const steps = [
 
 	function () {
 		output("Adding...");
-		run("git", ["add", escape(packageJson)], function (code) {
+		var args = ["add", "--", escape(packageJson)];
+		if (fs.existsSync(packageLockJson)) {
+			args.push(escape(packageLockJson));
+		}
+		run("git", args, function (code) {
 			if (code !== 0) return error("Adding failed.");
 			success("Adding completed.");
 		});
