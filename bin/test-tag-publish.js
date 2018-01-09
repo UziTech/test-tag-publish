@@ -75,6 +75,8 @@ function showHelp() {
         Skip the check for uncommitted changes.
     [-n | --no-test]
         Skip tests.
+		[--otp=123456]
+		    The one time password to publish with two-factor authentication
 
 For more info visit https://github.com/UziTech/test-tag-publish`));
 }
@@ -93,6 +95,7 @@ const message = argv.m || argv.message || "v%s";
 const tagMessage = argv.t || argv.tag || message;
 const force = argv.f || argv.force;
 const noTest = argv.n || (argv.test === false);
+const otp = argv.otp;
 
 if (!oldVersion) {
 	error("No version in package.json found.");
@@ -183,7 +186,11 @@ const steps = [
 
 	function () {
 		output("Publishing...");
-		run("npm", ["publish"], function (code) {
+		var args = ["publish"];
+		if (otp) {
+			args.push("--otp=" + otp);
+		}
+		run("npm", args, function (code) {
 			if (code !== 0) return error("npm publish failed.");
 			success("Released new version", newVersion, "successfully.");
 		});
