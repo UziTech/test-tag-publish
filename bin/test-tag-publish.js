@@ -43,9 +43,7 @@ function escape(arg) {
 
 function run(cmd, args, callback) {
 	output(">", cmd, ...args);
-	const proc = spawn(cmd, args, { shell: true });
-	proc.stdout.pipe(process.stdout);
-	proc.stderr.pipe(process.stderr);
+	const proc = spawn(cmd, args, { shell: true, stdio: "inherit" });
 	proc.on("close", callback);
 }
 
@@ -75,8 +73,6 @@ function showHelp() {
         Skip the check for uncommitted changes.
     [-n | --no-test]
         Skip tests.
-		[--otp=123456]
-		    The one time password to publish with two-factor authentication
 
 For more info visit https://github.com/UziTech/test-tag-publish`));
 }
@@ -95,7 +91,6 @@ const message = argv.m || argv.message || "v%s";
 const tagMessage = argv.t || argv.tag || message;
 const force = argv.f || argv.force;
 const noTest = argv.n || (argv.test === false);
-const otp = argv.otp;
 
 if (!oldVersion) {
 	error("No version in package.json found.");
@@ -150,7 +145,7 @@ const steps = [
 
 	function () {
 		output("Adding...");
-		var args = ["add", "--", escape(packageJson)];
+		let args = ["add", "--", escape(packageJson)];
 		if (fs.existsSync(packageLockJson)) {
 			args.push(escape(packageLockJson));
 		}
@@ -186,11 +181,7 @@ const steps = [
 
 	function () {
 		output("Publishing...");
-		var args = ["publish"];
-		if (otp) {
-			args.push("--otp=" + otp);
-		}
-		run("npm", args, function (code) {
+		run("npm", ["publish"], function (code) {
 			if (code !== 0) return error("npm publish failed.");
 			success("Released new version", newVersion, "successfully.");
 		});
