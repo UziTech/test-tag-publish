@@ -1,3 +1,7 @@
+# Archived
+
+We recommend using [semantic-release](https://github.com/semantic-release/semantic-release) instead
+
 # Overview
 
 This package will do the following:
