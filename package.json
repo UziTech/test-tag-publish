@@ -17,6 +17,6 @@
   "homepage": "https://github.com/UziTech/test-tag-publish#readme",
   "dependencies": {
     "colors": "^1.4.0",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.2"
   }
 }
